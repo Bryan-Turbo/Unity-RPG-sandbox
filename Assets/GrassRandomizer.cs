@@ -6,6 +6,8 @@ using UnityEngine;
 public class GrassRandomizer : MonoBehaviour {
 
     public Transform Transform;
+    public Material Material;
+    public SpriteRenderer Renderer;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +15,12 @@ public class GrassRandomizer : MonoBehaviour {
         foreach (Transform child in Transform) {
             float rotation = rand.Next(0, 4) * 90f;
             child.Rotate(new Vector3(0, 0, rotation));
+        }
+
+        var renderer = this.GetComponentsInChildren<SpriteRenderer>();
+
+        foreach (var render in renderer) {
+            render.material = this.Material;
         }
     }
 	
